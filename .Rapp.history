@@ -1,0 +1,5 @@
+setwd("Desktop/PublicRepository/ExpressionWideRegression/")
+devtools::check()
+pkgbuild::check_build_tools(debug = TRUE)
+pkgbuild::check_build_tools(debug = TRUE)
+devtools::check()

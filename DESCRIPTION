@@ -1,12 +1,24 @@
 Package: ExpressionWideRegression
-Title: What the Package Does (One Line, Title Case)
+Title: Estimate biologically meaningful variance and measurement noise of
+    protein level.
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Xilin", "Jiang", , "xj262@medschl.cam.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-6773-9182"))
+Description: The package provides an estimate of biological meaningful
+    variance proportion for a target protein.  This value is between 0 and
+    1, with 1 meaning the protein level is perfectly measured and 0
+    meaning the measurement is pure noise.
+License: GPL (>= 3)
+Depends: 
+    R (>= 2.10)
+Imports: 
+    dplyr (>= 1.1.0),
+    magrittr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
