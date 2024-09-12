@@ -610,9 +610,6 @@ init_para_COV_factor <- function(XY_Z_padded, X_padding_num, Y_padding_num, XZ_f
 #'    \item  summary_jackknife_testing_XZ: summary across jackknife blocks for choosing best_XZ.
 #' }
 #'
-#'
-#'
-
 #' @export
 #'
 #' @examples
