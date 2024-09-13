@@ -534,15 +534,15 @@ jk_cov <- function(XY_Z_padded, X_padding_num, Y_padding_num, num_jk_block = 10)
   return(jk_XY_Z_COV)
 }
 # create jackknife samples for OLS analysis
-jk_ols_x2z <- function(OLS_x2z, X_padding_num, Y_padding_num, num_jk_block = 10){
+jk_ols_x2z <- function(OLS_x2z, num_jk_block = 10){
   # divide the ids into num_jk_block numbers
-  size_block <- floor((length(OLS_x2z) - X_padding_num - Y_padding_num)/num_jk_block)
+  size_block <- floor((length(OLS_x2z))/num_jk_block)
   jk_ols_effects <- list()
   for(jk_idx in 1:num_jk_block){
     if(jk_idx == num_jk_block){
-      ids_exclude <-  (1+X_padding_num + Y_padding_num + (jk_idx - 1)*size_block ):(length(OLS_x2z))
+      ids_exclude <-  (1+ (jk_idx - 1)*size_block ):(length(OLS_x2z))
     }else{
-      ids_exclude <-  (1+X_padding_num + Y_padding_num + (jk_idx - 1)*size_block ):(X_padding_num + Y_padding_num + jk_idx *size_block )
+      ids_exclude <-  (1 + (jk_idx - 1)*size_block ):(jk_idx *size_block )
     }
     ids_include <- setdiff(1:length(OLS_x2z), ids_exclude)
     jk_ols_effects[[jk_idx]] <- OLS_x2z[ids_include]
@@ -800,8 +800,8 @@ jackknife_acrossZ_inputCOV <- function(XY_Z_padded, OLS_y2z, OLS_x2z, PxPy,
                                        ){
 
   jk_cov_list <- jk_cov(XY_Z_padded,X_padding_num, Y_padding_num, num_jk_block = num_jk_block)
-  jk_OLS_y2z <- jk_ols_x2z(OLS_y2z,X_padding_num, Y_padding_num, num_jk_block = num_jk_block)
-  jk_OLS_x2z <- jk_ols_x2z(OLS_x2z,X_padding_num, Y_padding_num, num_jk_block = num_jk_block)
+  jk_OLS_y2z <- jk_ols_x2z(OLS_y2z, num_jk_block = num_jk_block)
+  jk_OLS_x2z <- jk_ols_x2z(OLS_x2z, num_jk_block = num_jk_block)
 
   jk_results <- data.frame(jk_idx = as.numeric(),
                            beta_EWR = as.numeric(),
